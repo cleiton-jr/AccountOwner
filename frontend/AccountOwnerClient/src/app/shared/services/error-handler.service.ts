@@ -1,9 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpErrorResponse } from '@angular/common/http';
-import { Router } from '@angular/router';
-import { ErrorModalComponent } from '../modals/error-modal/error-modal.component';
+import { ErrorModalComponent } from './../modals/error-modal/error-modal.component';
 import { BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-
+import { HttpErrorResponse } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +17,7 @@ export class ErrorHandlerService {
       this.handle500Error(error);
     }
     else if (error.status === 404) {
-      this.handle404Error(error);
+      this.handle404Error(error)
     }
     else {
       this.handleOtherError(error);
@@ -46,7 +45,6 @@ export class ErrorHandlerService {
     };
     this.modal.show(ErrorModalComponent, config);
   }
-
 
   private createErrorMessage = (error: HttpErrorResponse) => {
     this.errorMessage = error.error ? error.error : error.statusText;
